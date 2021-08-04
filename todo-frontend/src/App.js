@@ -8,7 +8,7 @@ function App() {
     activeItem: {
       id: null,
       title: '',
-      completed: false
+      completed: false,
     },
     editing: false,
   });
@@ -37,8 +37,13 @@ const fetchTasks = () => {
   fetch('http://127.0.0.1:8000/api/task-list/')
   .then(response => response.json())
   .then(data => setState({
-    ...state,
-    todoList:data
+    todoList:data,
+    activeItem: {
+      id: null,
+      title: '',
+      completed: false
+    },
+    editing: false
   }))
 }
 
@@ -61,12 +66,11 @@ const handleSubmit = (e) => {
 
   let url = 'http://127.0.0.1:8000/api/task-create/';
 
-  if(state.editing === true) {
+  if(state.editing == true) {
     url = `http://127.0.0.1:8000/api/task-update/${state.activeItem.id}/`
     setState({
       ...state,
       editing: false,
-      
     })
   }
 
@@ -80,15 +84,9 @@ const handleSubmit = (e) => {
     body:JSON.stringify(state.activeItem)
   }).then((response) => {
     fetchTasks();
-    setState({
-      ...state,
-      activeItem: {
-        id: null,
-        title: '',
-        completed: false
-      },
-    })
+    
   }).catch((err) => console.log(err))
+  console.log(state.activeItem)
 }
 const tasks = state.todoList;
 
@@ -137,7 +135,8 @@ const handleComplete = (task) => {
         <div id="form-wrapper">
           <form action="" id="form" onSubmit={handleSubmit}>
             <div className="flex-wrapper">
-              <div style={{flex: 6}}>
+              <div id="inputForm" style={{flex: 6}}>
+                <label htmlFor="title"><span class="badge badge-danger">{state.editing === true? 'Edit' : 'Add'}</span></label>
                 <input 
                   className="form-control" 
                   type="text" 

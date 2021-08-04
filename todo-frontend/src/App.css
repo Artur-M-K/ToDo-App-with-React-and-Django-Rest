@@ -41,6 +41,20 @@ body {
   display: flex;
 }
 
+#inputForm {
+  position: relative;
+}
+
+#inputForm label {
+  position: absolute;
+  top: -23px;
+  left: 0;
+}
+
+.badge {
+  font-weight: 100;
+}
+
 .task-wrapper {
   cursor: pointer;
   border-bottom: 1px solid #e9e9e9;
@@ -50,5 +64,16 @@ body {
 }
 
 .task-wrapper:hover {
-  background-color: #dbdbdb;
+  background-color: #d8c5c5;
+}
+
+#title:focus {
+  border-color: #f3424b;
+  box-shadow: none;
+}
+
+#submit:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
