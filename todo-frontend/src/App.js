@@ -136,7 +136,7 @@ const handleComplete = (task) => {
           <form action="" id="form" onSubmit={handleSubmit}>
             <div className="flex-wrapper">
               <div id="inputForm" style={{flex: 6}}>
-                <label htmlFor="title"><span class="badge badge-danger">{state.editing === true? 'Edit' : 'Add'}</span></label>
+                <label htmlFor="title"><span class="position-absolute top-0 start-100 translate-middle badge bg-danger">{state.editing === true? 'Edit' : 'Add'}</span></label>
                 <input 
                   className="form-control" 
                   type="text" 
